@@ -1,0 +1,149 @@
+﻿@model QL_BanSach.Models.SACH
+@{
+    ViewBag.Title = "ChiTiet";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.Masach;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "GioHang")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+@*<section class="py-3 bg-light">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Category name</a></li>
+            <li class="breadcrumb-item"><a href="#">Sub category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Items</li>
+        </ol>
+    </div>
+</section>*@
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class  ="section-content bg-white padding-y">
+    <div class="container">
+
+        <!-- ============================ ITEM DETAIL ======================== -->
+        <div class="row">
+            <aside class="col-md-6">
+                <div class="card">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <div> <a href="#"><img src="~/Content/images/@Model.Anhbia"></a></div>
+                        </div> <!-- slider-product.// -->
+                        <!--<div class="thumbs-wrap">
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-2.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
+                        </div>--> <!-- slider-nav.// -->
+                    </article> <!-- gallery-wrap .end// -->
+                </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-6">
+                <article class="product-info-aside">
+
+                    <h2 class="title mt-3">@Model.Tensach</h2>
+
+                    <div class="rating-wrap my-3">
+                        <ul class="rating-stars">
+                            <li style="width:80%" class="stars-active">
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                        </ul>
+                        <small class="label-rating text-muted">Số lượng: @Model.Soluongton</small>
+                        
+                    </div> <!-- rating-wrap.// -->
+
+                    <div class="mb-3">
+                        <var class="price">@string.Format("{0:N0}", Model.Giaban) VNĐ</var>
+                    </div> <!-- price-detail-wrap .// -->
+
+                    <p>
+                        @Model.Mota
+                    </p>
+
+                    <div class="form-row  mt-5">
+                        <div class="form-group col-md flex-grow-0">
+                            <div class="input-group mb-4 input-spinner">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-light" type="button" onclick="value += 1" id="button-plus"> + </button>
+                                </div>
+                                <input type="text" id="ipQuantity" class="form-control" style="min-width: 60px;" value="1" min="1" max="@Model.Soluongton">
+                                <div class="input-group-append">
+                                    <button class="btn btn-light" type="button" onclick="value -= 1" id="button-minus"> − </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            var value = 1;
+                            var sl = @Model.Soluongton;
+
+                            function updateQuantity() {
+                                // Update the value of the input field
+                                document.getElementById("ipQuantity").value = value;
+                            }
+                            document.getElementById("button-plus").addEventListener("click", function () {
+                                if (value < sl) {
+                                    value++;
+                                    updateQuantity();
+                                }
+                            });
+                            document.getElementById("button-minus").addEventListener("click", function () {
+                                if (value >1) {
+                                    value--;
+                                    updateQuantity();
+                                }
+                            });
+                        </script>
+
+                        <div class="form-group col-md">
+                            <a href="#" id="addtocart" class="btn  btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text">Thêm vào giỏ hàng</span>
+                            </a>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+
+                </article> <!-- product-info-aside .// -->
+            </main> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ================ ITEM DETAIL END .// ================= -->
+
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

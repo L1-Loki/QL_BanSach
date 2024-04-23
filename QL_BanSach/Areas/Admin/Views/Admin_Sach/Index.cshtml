@@ -1,0 +1,97 @@
+﻿@model IEnumerable<QL_BanSach.Models.SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml ";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <h2>Quản lý Sách</h2>
+
+        <p>
+            @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+            <a class="btn btn-primary" href=" @Url.Action("index", "Admin_ChuDe")">Chủ đề</a>
+        </p>
+       
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <table id="example" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tensach)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Giaban)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mota)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Anhbia)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ngaycapnhat)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Soluongton)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CHUDE.TenChuDe)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TACGIA.TenTG)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NHAXUATBAN.TenNXB)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tensach)
+                            </td>
+                            <td>
+                                @string.Format("{0:N0}", item.Giaban) VNĐ
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mota)
+                            </td>
+                            <td>
+                                <img src="~/Content/images/@item.Anhbia" alt="Hình ảnh" style="width:100px"/>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Soluongton)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TACGIA.TenTG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.Masach }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.Masach }, new { @class = "btn btn-info " })
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.Masach }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

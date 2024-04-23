@@ -1,0 +1,107 @@
+﻿@model QL_BanSach.Models.SACH
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <h4>Chi tiết Sách @Model.Tensach</h4>
+        <hr />
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Tensach)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Tensach)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Giaban)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Giaban)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Mota)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.Raw(Model.Mota)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Anhbia)
+                    </dt>
+                    <dd class="col-sm-9">
+                        <img src="@Url.Content("~/Content/images/" + @Model.Anhbia)" alt="Hình ảnh" class="img-responsive" width="100px" />
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Ngaycapnhat)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Ngaycapnhat)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Soluongton)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Soluongton)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.CHUDE.TenChuDe)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.TACGIA.TenTG)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.TACGIA.TenTG)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.NHAXUATBAN.TenNXB)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+                    </dd>
+
+                </dl>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-12">
+                        <dl class="row">
+                            <dt class="col-sm-6">
+                                @Html.ActionLink("Sửa", "Edit", new { id = Model.Masach }, new { @class = "btn btn-primary  btn-block" })
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.ActionLink("Trờ về", "Index", null, new { @class = "btn btn-info btn-block" })
+                            </dd>
+                        </dl>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+

@@ -1,0 +1,94 @@
+﻿@model QL_BanSach.Models.TACGIA
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml ";
+}
+
+@using (Html.BeginForm("Edit", "Admin_TacGia", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <h4>Sửa tác giả </h4>
+            <hr />
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card shadow-lg p-3 mb-6 bg-white rounded">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaTG)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    <input type="file" name="file" />
+                                    <img src=@Url.Content("~/Content/images/avatars/"+ @Model.Anhbia) width="100px;" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TenTG, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.TenTG, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenTG, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Diachi, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Tieusu" class="control-label col-md-2">Mô tả</label>
+                                <div class="col-md-12">
+                                    <textarea id="Tieusu" name="Tieusu" class="form-control" rows="5"></textarea>
+                                    <script type="text/javascript">
+                                        function stripHtmlTags(text) {
+                                            return text.replace(/<[^>]*>/g, '');
+                                        }
+
+                                        document.getElementById('Tieusu').addEventListener('change', function () {
+                                            var text = document.getElementById('Tieusu').value;
+                                            document.getElementById('Tieusu').value = stripHtmlTags(text);
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Dienthoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-12">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">
+                                            <input type="submit" value="Lưu thay đổi" class="btn btn-primary btn-block" />
+                                        </dt>
+                                        <dd class="col-sm-6">
+                                            @Html.ActionLink("Trờ về", "Index", null, new { @class = "btn btn-info btn-block" })
+                                        </dd>
+                                    </dl>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}

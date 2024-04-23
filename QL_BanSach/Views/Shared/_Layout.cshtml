@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Website title - bootstrap html template</title>
+
+    <link href="~/Content/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <!-- jQuery -->
+    <script src="~/Content/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="~/Content/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font awesome 5 -->
+    <link href="~/Content/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+    <!-- custom style -->
+    <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+
+    <!-- custom javascript -->
+    <script src="~/Content/js/script.js" type="text/javascript"></script>
+
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="~/Content/js/_layout.js"></script>
+    <style>
+        th {
+            white-space: nowrap; /* Tránh xuống hàng */
+            text-align: center;
+        }
+
+        .dataTables_info {
+            display: none;
+        }
+
+        .logo {
+            max-width: 180%;
+        }
+    </style>
+</head>
+<body>
+
+    @*@{
+        @model QL_BanSach.Models.KHACHHANG
+        QLBansachEntities db = new QLBansachEntities();
+        var khachHangs = db.KHACHHANGs.First();
+    }*@
+
+    <header class="section-header">
+        <section class="header-main border-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-3 col-md-12">
+                        <a href="@Url.Action("index","Home")" class="brand-wrap">
+                            <img class="logo" src="~/Content/images/SachOnline1.svg" style=" max-height: none;">
+                        </a> <!-- brand-wrap.// -->
+                    </div>
+                    <!--<div class="col-xl-6 col-lg-5 col-md-6">
+                        <form action="#" class="search-header">
+                            <div class="input-group w-100">
+                                <select class="custom-select border-right" name="category_name">
+                                    <option value="">All type</option>
+                                    <option value="codex">Special</option>
+                                    <option value="comments">Only best</option>
+                                    <option value="content">Latest</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>-->
+                    <!-- search-wrap .end// -->
+                    <!--</div>--> <!-- col.// -->
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="widgets-wrap float-md-right" style="margin-right: -677px;">
+                            <div class="widget-header mr-3">
+                                <a href="#" class="widget-view">
+
+                                   
+
+                                </a>
+                            </div>
+                            <div class="widget-header mr-3">
+                                <a href="@Url.Action("Login","Home")" class="widget-view">
+                                    <div class="icon-area">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    @if (Session["MaKH"] != null)
+                                    {
+                                        <small class="text">
+                                            <a href="~/Home/Logout">Đăng xuất</a>
+                                        </small>
+                                    }
+                                    else
+                                    {
+                                        <small class="text">
+                                            <a href="~/Home/Login">Đăng nhập</a>
+                                        </small>
+                                    }
+
+                                    @*<small class="text"> My profile </small>*@
+                                </a>
+                            </div>
+                            @*  <div class="widget-header mr-3">
+                                    <a href="#" class="widget-view">
+                                        <div class="icon-area">
+                                            <i class="fa fa-comment-dots"></i>
+                                            <span class="notify">1</span>
+                                        </div>
+                                        <small class="text"> Message </small>
+                                    </a>
+                                </div>
+                                <div class="widget-header mr-3">
+                                    <a href="#" class="widget-view">
+                                        <div class="icon-area">
+                                            <i class="fa fa-store"></i>
+                                        </div>
+                                        <small class="text"> Orders </small>
+                                    </a>
+                                </div>*@
+                            <div class="widget-header">
+                                <a href="@Url.Action("index","GioHang")" class="widget-view">
+                                    <div class="icon-area">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="notify" id="CartCount">
+                                            @if (@Session["count"] != null)
+                                            {
+                                                @Session["count"]
+                                            }
+                                            else
+                                            {
+                                                <span class="notify">0</span>
+                                            }
+                                        </span>
+                                    </div>
+                                    <small class="text"> Cart </small>
+                                </a>
+                            </div>
+                        </div> <!-- widgets-wrap.// -->
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- container.// -->
+        </section> <!-- header-main .// -->
+
+
+
+    </header> <!-- section-header.// -->
+    <!-- ========================= FOOTER ========================= -->
+    @RenderBody()
+    <footer class="section-footer bg-secondary">
+        <div class="container">
+            <section class="footer-bottom text-center">
+
+                <p class="text-white">Chính sách bảo mật - Điều khoản sử dụng - JoyX</p>
+                <p class="text-muted"> &copy @DateTime.Now.Year Công ty ABC, Mọi quyền được bảo lưu </p>
+                <br>
+            </section>
+        </div><!-- //container -->
+    </footer>
+    <!-- ========================= FOOTER END // ========================= -->
+
+
+
+</body>
+</html>
